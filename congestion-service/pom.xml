@@ -22,6 +22,11 @@
       <version>5.6.3</version>
     </dependency>
     <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.15.2</version>
+    </dependency>
+    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>2.0.9</version>
@@ -36,6 +41,13 @@
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-client</artifactId>
       <version>5.18.3</version>
+    </dependency>
+    <dependency>
+      <!-- embedded broker (vm:// or random tcp port) so tests can prove messages really flow, no Docker -->
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-broker</artifactId>
+      <version>5.18.3</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
