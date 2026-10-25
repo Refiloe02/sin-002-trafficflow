@@ -1,4 +1,7 @@
 package co.wethinkcode.trafficflow;
 
-public class HeartbeatPublisher {
+/** Something that can send one heartbeat. The real one talks to ActiveMQ. */
+public interface HeartbeatPublisher {
+
+    void publish(Heartbeat heartbeat) throws Exception;
 }
