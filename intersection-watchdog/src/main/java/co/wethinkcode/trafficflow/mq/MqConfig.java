@@ -11,6 +11,9 @@ public final class MqConfig {
     public static final String BROKER_URL = "tcp://localhost:61616";
     public static final String HEARTBEAT_QUEUE = "intersection-heartbeat-queue";
 
+    /** ActiveMQ's default dead-letter queue: where heartbeats that expired unconsumed end up. */
+    public static final String DEAD_LETTER_QUEUE = "ActiveMQ.DLQ";
+
     private MqConfig() {
     }
 }
