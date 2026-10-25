@@ -1,4 +1,5 @@
 package co.wethinkcode.trafficflow;
 
-public class CongestionRequest {
+/** Body of POST /congestion, e.g. {"level": 4}. Integer (not int) so a missing field is detectable. */
+public record CongestionRequest(Integer level) {
 }
