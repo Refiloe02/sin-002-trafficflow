@@ -32,15 +32,14 @@ mvn package
 java -jar target/congestion-service.jar
 ```
 
-Listens on port `7022`.
+Listens on port `7022`. `GET /congestion` returns `{"level": n}`; `POST /congestion` with `{"level": 4}` updates it and,
+when the level really changed, publishes `{"level":4,"timestamp":"..."}` to `congestion-topic`.
 
 ## Test
 
-No automated tests yet. Manually verify it's up:
+Run `mvn test`. To check a running instance:
 
 ```
 curl http://localhost:7022/health   # -> OK
 ```
 
-To add real tests, add JUnit 5 + the Surefire plugin to `pom.xml`, put tests under
-`src/test/java/co/wethinkcode/trafficflow/`, and run `mvn test`.
