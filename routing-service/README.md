@@ -32,15 +32,15 @@ mvn package
 java -jar target/routing-service.jar
 ```
 
-Listens on port `7023`.
+Listens on port `7023`. `GET /route?from=INT-1001&to=INT-1005` estimates travel time (12 min base, +6 across districts,
+signal delays, x(1 + 0.25 x congestion level)). Intersections are validated over REST (`INTERSECTION_URL`); the congestion
+level arrives through a durable subscription to `congestion-topic`. `GET /congestion` shows what has been received.
 
 ## Test
 
-No automated tests yet. Manually verify it's up:
+Run `mvn test`. To check a running instance:
 
 ```
 curl http://localhost:7023/health   # -> OK
 ```
 
-To add real tests, add JUnit 5 + the Surefire plugin to `pom.xml`, put tests under
-`src/test/java/co/wethinkcode/trafficflow/`, and run `mvn test`.
