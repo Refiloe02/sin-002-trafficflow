@@ -32,15 +32,16 @@ mvn package
 java -jar target/intersection-service.jar
 ```
 
-Listens on port `7021`.
+Listens on port `7021`. Loads cleaned data from ingestion-service (`INGESTION_URL`). Endpoints:
+`GET /intersections[?district=X]`, `GET /intersections/{id}`, `GET /districts`, `GET /districts/{name}`,
+`GET /heartbeat`, `POST /refresh`. Sends a heartbeat to `intersection-heartbeat-queue` every
+`HEARTBEAT_INTERVAL_SECONDS` (default 5).
 
 ## Test
 
-No automated tests yet. Manually verify it's up:
+Run `mvn test`. To check a running instance:
 
 ```
 curl http://localhost:7021/health   # -> OK
 ```
 
-To add real tests, add JUnit 5 + the Surefire plugin to `pom.xml`, put tests under
-`src/test/java/co/wethinkcode/trafficflow/`, and run `mvn test`.
