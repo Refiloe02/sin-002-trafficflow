@@ -70,10 +70,11 @@ Once the TODOs below are implemented, verify end-to-end by publishing a message 
 `congestion-service` and confirming the consumer(s) receive it — e.g. via logs, or by
 watching the topic in the web console.
 
-## TODO
+## Status
 
-- Add `activemq-client` publish logic to `congestion-service` on its stage/state-change endpoint.
-- Add `activemq-client` subscriber logic to consumer service(s) above, replacing any
-  direct synchronous calls to `congestion-service`.
-- Add `activemq-client` heartbeat-publish logic to `intersection-service`.
-- Add `activemq-client` subscriber/alerting logic to `intersection-watchdog`.
+- `congestion-service` publishes persistent JSON messages to `congestion-topic` whenever the level really changes.
+- `routing-service` holds a **durable** subscription (client id `routing-service`), so updates published while it
+  is down are delivered when it reconnects.
+- `intersection-service` sends a non-persistent heartbeat (with a time-to-live) to `intersection-heartbeat-queue`;
+  `intersection-watchdog` consumes it and also listens on `ActiveMQ.DLQ` for heartbeats that expired.
+- Watch it live in the web console: http://localhost:8161 -> Topics / Queues.
