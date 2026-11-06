@@ -5,3 +5,6 @@ dependency-reduced-pom.xml
 *.iml
 .vscode/
 .DS_Store
+
+# embedded-broker test data (only created if a test is run with persistence)
+activemq-data/
