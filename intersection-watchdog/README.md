@@ -32,15 +32,15 @@ mvn package
 java -jar target/intersection-watchdog.jar
 ```
 
-Listens on port `7024`.
+Listens on port `7024`. Consumes `intersection-heartbeat-queue` and `ActiveMQ.DLQ`. `GET /alert` returns the state
+(`UNKNOWN`, `UP`, `DOWN`), the last heartbeat and the alert history. It declares the service DOWN after
+`MAX_MISSED_BEATS` (default 3) x `HEARTBEAT_INTERVAL_SECONDS` of silence, alerts once, and reports RECOVERED when beats resume.
 
 ## Test
 
-No automated tests yet. Manually verify it's up:
+Run `mvn test`. To check a running instance:
 
 ```
 curl http://localhost:7024/health   # -> OK
 ```
 
-To add real tests, add JUnit 5 + the Surefire plugin to `pom.xml`, put tests under
-`src/test/java/co/wethinkcode/trafficflow/`, and run `mvn test`.
